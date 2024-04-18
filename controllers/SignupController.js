@@ -5,6 +5,18 @@ const signup = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
+        // Input validation
+        if (!username || !email || !password) {
+            return res.status(400).json({ success: false, message: 'Missing required fields' });
+        }
+
+        // Password format validation 
+        // Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            return res.status(400).json({ success: false, message: 'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long' });
+        }
+
         // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
