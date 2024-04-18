@@ -4,6 +4,8 @@ const connectToDatabase = require("./db/dbSetup");
 
 const app = express();
 
+const router = require("./routes/userRoutes")
+
 // Call the database connection function before starting the server
 connectToDatabase(process.env.MONGODB_URI).then((success) => {
     if (success) {
@@ -16,7 +18,5 @@ connectToDatabase(process.env.MONGODB_URI).then((success) => {
     }
 });
 
-app.use("/api", (req, res, next) => {
-	res.send("Hello Vidit");
-});
+app.use("/api", router);
 
