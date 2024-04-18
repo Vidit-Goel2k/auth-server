@@ -4,7 +4,6 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
         minlength: 3,
         maxlength: 50
@@ -22,14 +21,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 8,
-        validate: {
-            validator: function(value) {
-                // Password must contain at least one lowercase letter,
-                // one uppercase letter, one number, and one special character
-                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value);
-            },
-            message: props => `${props.value} is not a valid password. Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.`
-        }
     }
 });
 

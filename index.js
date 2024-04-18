@@ -4,6 +4,8 @@ const connectToDatabase = require("./db/dbSetup");
 
 const app = express();
 
+app.use(express.json())
+
 const router = require("./routes/userRoutes")
 
 // Call the database connection function before starting the server
