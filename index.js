@@ -4,9 +4,11 @@ const cors = require('cors')
 const app = express();
 
 const connectToDatabase = require("./db/dbSetup");
-const router = require("./routes/userRoutes")
+const router = require("./routes/userRoutes");
+const cookieParser = require("cookie-parser");
 
-app.use(cors())
+app.use(cookieParser())
+app.use(cors({credentials: true, origin:"http://localhost:5173"}))
 app.use(express.json())
 
 // Call the database connection function before starting the server

@@ -26,13 +26,13 @@ const login = async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '30s' });
 
         // Set HTTP-only cookie with the token
         res.cookie('token', token, {
             httpOnly: true,
             sameSite: 'lax', 
-            maxAge: 60 * 60 * 1000, // 1 hour expiration
+            maxAge: 35 * 1000, // 35 sec
             // secure: true, // Uncomment in production if using HTTPS
         });
 
