@@ -5,6 +5,8 @@ const login = require("../controllers/LoginController");
 const verifyToken = require("../middlewares/VerifyToken");
 const refreshToken = require("../middlewares/RefreshToken");
 const getUserInfo = require('../middlewares/GetUser');
+const logoutController = require('../controllers/LogoutController');
+const logout = require('../controllers/LogoutController');
 
 const router = express.Router()
 
@@ -19,5 +21,7 @@ router.post('/login', login)
 router.get('/user', verifyToken, getUserInfo)
 
 router.get('/refresh', refreshToken, verifyToken, getUserInfo)
+
+router.post('/logout', verifyToken, logout)
 
 module.exports = router
