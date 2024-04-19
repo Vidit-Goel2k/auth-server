@@ -1,12 +1,13 @@
 require("dotenv").config();
 const express = require("express");
-const connectToDatabase = require("./db/dbSetup");
-
+const cors = require('cors')
 const app = express();
 
-app.use(express.json())
-
+const connectToDatabase = require("./db/dbSetup");
 const router = require("./routes/userRoutes")
+
+app.use(cors())
+app.use(express.json())
 
 // Call the database connection function before starting the server
 connectToDatabase(process.env.MONGODB_URI).then((success) => {

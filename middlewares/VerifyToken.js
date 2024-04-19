@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const verifyToken = (req, res, next) => {
 
     const authHeaderCookie = req.headers.cookie;
-    console.log(req.headers)
+    
     // Check if token is provided
     if (!authHeaderCookie || !authHeaderCookie.startsWith('token=')) {
         return res.status(401).json({ success: false, message: 'No token provided' });
@@ -20,8 +20,6 @@ const verifyToken = (req, res, next) => {
         req.userId = decoded.userId;
 
         console.log('Token verified successfully');
-
-        return res.status(200).json({ success: true, message: 'Token verified successfully', userId: decoded.userId });
 
         next();
     } catch (error) {
