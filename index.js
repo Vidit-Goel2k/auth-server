@@ -11,11 +11,13 @@ app.use(cookieParser())
 app.use(cors({credentials: true, origin:"https://mern-auth-client.viditgoel.com"}))
 app.use(express.json())
 
+const port = process.env.PORT || 4000;
+
 // Call the database connection function before starting the server
 connectToDatabase(process.env.MONGODB_URI).then((success) => {
     if (success) {
-        app.listen(5000, () => {
-            console.log("Listening on localhost port: 5000");
+        app.listen(port, () => {
+            console.log("Listening on localhost port: ", port);
         });
     } else {
         console.log("Error connecting to Server");
