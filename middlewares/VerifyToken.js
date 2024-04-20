@@ -4,9 +4,11 @@ const verifyToken = (req, res, next) => {
 
     const authHeaderCookie = req.headers.cookie;
 
+    console.log(req.headers)
+
     // Check if token is provided
     if (!authHeaderCookie || !authHeaderCookie.startsWith('token=')) {
-        return res.status(401).json({ success: false, message: 'No token provided' });
+        return res.status(401).json({ success: false, message: 'No token provided', hello:req.headers });
     }
 
     // Extract token from Authorization header
