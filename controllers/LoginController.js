@@ -33,7 +33,7 @@ const login = async (req, res) => {
             httpOnly: true,
             sameSite: 'lax', 
             maxAge: 35 * 1000, // 35 sec
-            // secure: true, // Uncomment in production if using HTTPS
+            secure: true, // Uncomment in production if using HTTPS
         });
 
         // Respond with success message

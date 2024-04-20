@@ -29,6 +29,7 @@ const refreshToken = (req, res, next) => {
             expires: new Date(Date.now() + 1000 * 35), // 35 seconds
             httpOnly: true,
             sameSite: 'lax',
+            secure: true,
         });
 
         next();
