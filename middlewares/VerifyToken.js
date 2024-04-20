@@ -8,19 +8,22 @@ const extractTokenFromCookie = (cookieString) => {
 	// Split the cookie string by semicolons to get individual cookies
 	const cookies = cookieString.split(";");
 
+    console.log("cookie- ", cookie )
+    
 	// Find the cookie containing the token
 	const tokenCookie = cookies.find((cookie) =>
-		cookie.trim().startsWith("token=")
-	);
+        cookie.trim().startsWith("token=")
+    );
+    console.log("tokenCookie- ", tokenCookie )
 
-	if (!tokenCookie) {
-		return null;
-	}
+    if (!tokenCookie) {
+        return null;
+    }
 
-	// Extract the token from the cookie value
-	const token = tokenCookie.split("=")[1];
-
-	return token;
+    // Extract the token from the cookie value
+    const token = tokenCookie.split("=")[1];
+    console.log("token- ", token )
+    return token;
 };
 
 const verifyToken = (req, res, next) => {
@@ -37,6 +40,7 @@ const verifyToken = (req, res, next) => {
 				success: false,
 				message: "No token provided",
 				hello: req.headers,
+                token: token,
 			});
 	}
 
